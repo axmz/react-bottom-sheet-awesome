@@ -45,7 +45,7 @@ const MenuDrawer = ({ children }) => {
   const open = useCallback(() => {
     // console.log('open')
     draggingRef.current = false;
-    set({ y: h - ceil, config: config.wobbly });
+    set({ y: h - ceil - p, config: config.wobbly });
     // set({ y: (h - p - m), config: config.wobbly });
     disableBodyScroll(menuRef.current, { reserveScrollBarGap: true });
   }, [set, h, ceil]);
@@ -98,13 +98,13 @@ const MenuDrawer = ({ children }) => {
         newY = newY / (1 - newY * 0.5);
       }
       if (last) {
-        console.log('case 3')
-        // console.log(newY > h * 0.85)
-        // console.log(vy > 0.2)
-        // console.log(event)
-        // const scrollable = event.target.closest("#scrollable")
-        // (newY > h * 0.85 && !scrollable) || (vy > 0.2 && !scrollable) ? close(vy) : open();
-        newY > h * 0.85 || vy > 0.8 ? close(vy) : open();
+        // console.log("case 3")
+        const scrollable = event.target.closest("#scrollable")
+        if (scrollable) {
+          ((newY > h * 0.85 || vy > 0.2) && scrollable.scrollTop < 5)  ? close(vy) : open();
+        } else {
+          (newY > h * 0.85 || vy > 0.2) ? close(vy) : open();
+        }
       } else {
         // console.log('case 4')
         let high = h - p

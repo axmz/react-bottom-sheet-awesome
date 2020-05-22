@@ -4,13 +4,13 @@ import { disableBodyScroll, clearAllBodyScrollLocks } from "body-scroll-lock";
 export const useBodyScrollLock = (ref) => {
     const r = useRef()
     const handleMouseOver = e => {
-        console.log('mouse over')
+        // console.log('mouse over')
         disableBodyScroll(e.target, { reserveScrollBarGap: true });
         e.stopPropagation();
     };
 
     const handleMouseOut = e => {
-        console.log('mouse out')
+        // console.log('mouse out')
         clearAllBodyScrollLocks();
         e.stopPropagation();
     };

@@ -4,7 +4,6 @@ export const useOutsideEvent = (ref, callback) => {
 
     useEffect(() => {
         const handleOutsideEvent = e => {
-            console.log('outside event')
             if (ref.current && !ref.current.contains(e.target)) {
                 callback();
             }
