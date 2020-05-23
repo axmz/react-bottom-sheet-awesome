@@ -1,5 +1,5 @@
 import React from 'react'
-import musk from './musk-album.jpg'
+import musk from '../../assets/musk-album.jpg'
 
 const Example = () => {
 

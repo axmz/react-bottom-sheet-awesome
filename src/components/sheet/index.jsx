@@ -3,18 +3,16 @@
 
 import React, { useCallback, useRef } from "react";
 import { useSpring, animated, config } from "react-spring";
-import { useDrag, useScroll } from "react-use-gesture";
+import { useDrag } from "react-use-gesture";
 import styles from "./styles.module.scss";
 import clamp from "lodash/clamp";
 import { disableBodyScroll, clearAllBodyScrollLocks } from "body-scroll-lock";
 import { useHeight } from "./useHeight";
 import { useOutsideEvent } from "./useOutsideEvent";
 import { useBodyScrollLock } from "./useBodyScrollLock";
-import { useScrollTracker } from "./useScrollTracker";
 
 const MenuDrawer = ({ children }) => {
   const draggingRef = useRef(true);
-  const scrollingRef = useRef(false);
   const menuRef = useRef();
   const scrollRef = useRef();
 
@@ -29,11 +27,10 @@ const MenuDrawer = ({ children }) => {
   const ceil = Math.min(s - top, o + p, c + p); // 
   const dtt = s - ceil // distance till top
 
-  console.log('Sheet', h)
+  // console.log('Sheet', h)
 
   useBodyScrollLock(menuRef)
   useOutsideEvent(menuRef, () => close()); // check if it works
-  useScrollTracker(scrollRef, scrollingRef)
 
   // Spring
   const [{ y }, set] = useSpring(() => ({
@@ -45,8 +42,7 @@ const MenuDrawer = ({ children }) => {
   const open = useCallback(() => {
     // console.log('open')
     draggingRef.current = false;
-    set({ y: h - ceil - p, config: config.wobbly });
-    // set({ y: (h - p - m), config: config.wobbly });
+    set({ y: h - ceil, config: config.stiff });
     disableBodyScroll(menuRef.current, { reserveScrollBarGap: true });
   }, [set, h, ceil]);
 
@@ -83,7 +79,6 @@ const MenuDrawer = ({ children }) => {
     }) => {
       let newY = memo + my;
 
-      // console.log('1dr', draggingRef.current)
       if (first) {
         draggingRef.current = true;
         disableBodyScroll(menuRef.current);
@@ -128,6 +123,7 @@ const MenuDrawer = ({ children }) => {
             });
           }
           if (atBottom && my < 0)
+          // console.log('case 5')
             set({
               y: clamp(newY, low, high),
               immediate: true,
@@ -141,14 +137,15 @@ const MenuDrawer = ({ children }) => {
         }
 
       }
-      // console.log("2dr", draggingRef.current)
 
       return memo;
     }
   );
 
-  const style = { height: `${ceil}px`, overflow: "scroll" }
+  const style = { height: `${ceil-p}px`}
   const spring = { y }
+  // const blur = y.to([0, h], [`blur(10px)`, `blur(0px)`])
+  // const width = y.to([ceil, h-ceil+p+top], [`7rem`, `.2rem`])
 
   return (
     <animated.div
@@ -158,14 +155,14 @@ const MenuDrawer = ({ children }) => {
       style={spring}
       onClick={toggleMenu}
     >
-      {console.log("render")}
       <div className={styles.pull}>
-        <div className={styles['pull-line']} />
+        <div className={styles['pull-line']}/>
       </div>
       <div>
         <div
           ref={scrollRef}
           id={"scrollable"}
+          className={styles.scrollable}
           style={style}
         >
           {children}
@@ -174,6 +171,6 @@ const MenuDrawer = ({ children }) => {
       </div>
     </animated.div>
   );
-};
+  };
 
 export default MenuDrawer;
