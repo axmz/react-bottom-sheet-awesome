@@ -4,7 +4,7 @@
 import React, { useCallback, useRef } from "react";
 import { useSpring, animated, config } from "react-spring";
 import { useDrag, useScroll } from "react-use-gesture";
-import styles from "./menu-drawer.module.scss";
+import styles from "./styles.module.scss";
 import clamp from "lodash/clamp";
 import { disableBodyScroll, clearAllBodyScrollLocks } from "body-scroll-lock";
 import { useHeight } from "./useHeight";

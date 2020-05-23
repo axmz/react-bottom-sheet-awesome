@@ -1,30 +1,31 @@
 import React from 'react';
 import './App.css';
-import MenuDrawer from './components/menu-drawer/menu-drawer'
-const Ruler = () => {
+import MenuDrawer from './components/sheet'
+import Ruler from './components/ruler'
+import Example from './components/example'
 
-  return <div style={{ height: 'auto', backgroundColor: "white" }}>
-    <div style={{ height: '100px', display: "flex", alignItems: "flex-end" }}>_ 100</div>
-    <div style={{ height: '100px', display: "flex", alignItems: "flex-end" }}>_ 200</div>
-    <div style={{ height: '100px', display: "flex", alignItems: "flex-end" }}>_ 300</div>
-    <div style={{ height: '100px', display: "flex", alignItems: "flex-end" }}>_ 400</div>
-    <div style={{ height: '100px', display: "flex", alignItems: "flex-end" }}>_ 500</div>
-    <div style={{ height: '100px', display: "flex", alignItems: "flex-end" }}>_ 600</div>
-    <div style={{ height: '100px', display: "flex", alignItems: "flex-end" }}>_ 700</div>
-    <div style={{ height: '100px', display: "flex", alignItems: "flex-end" }}>_ 800</div>
-    <div style={{ height: '100px', display: "flex", alignItems: "flex-end" }}>_ 900</div>
-    <div style={{ height: '100px', display: "flex", alignItems: "flex-end" }}>_ 1000</div>
-  </div>
-}
-function App() {
+const Dev = () => {
   return (
     <>
       <Ruler />
       <MenuDrawer>
-        <Ruler />
+        <Ruler style={{ height: "auto", backgroundColor: "brown" }} />
       </MenuDrawer>
     </>
-  );
+  )
+}
+
+const Style = () => {
+  return <>
+    <MenuDrawer>
+      <Example/>
+    </MenuDrawer>
+  </>
+}
+
+function App() {
+  return (<Style />);
+  // return (<Dev />);
 }
 
 export default App;

@@ -8,3 +8,6 @@
 - add shadow effect
 - check performance
 - user select; touch action; including outside element
+- one side border radiu + gradient
+- apple music like animation, goes to pull
+- do not close when swipe left / right

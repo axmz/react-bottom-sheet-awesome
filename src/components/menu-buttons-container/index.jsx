@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "./menu-buttons-container.module.scss";
-import MenuButton from "../menu-button/menu-button";
+import styles from "./styles.module.scss";
+import MenuButton from "../menu-button";
 import { ReactComponent as MagnifyingGlassIcon } from "../../assets/svg/001-magnifying-glass.svg";
 import { ReactComponent as HouseIcon } from "../../assets/svg/002-simple-house-thin.svg";
 import { ReactComponent as UserIcon } from "../../assets/svg/003-user.svg";
