@@ -20,7 +20,7 @@ import Ruler from './components/ruler'
 const Style = () => {
   return <>
     <MenuDrawer>
-      <Ruler style={{ height: "auto", backgroundColor: "transparent" }}/>
+      <Ruler style={{ height: "auto", backgroundColor: "transparent" }} />
       {/* <Social/> */}
       {/* <ExampleDark/> */}
       {/* <ExampleLight/> */}
@@ -28,8 +28,20 @@ const Style = () => {
   </>
 }
 
+const Info = () => {
+  return (
+    <div style={{ textAlign: "center", padding: "1rem", color: "white" }}>
+      Try it in DevTools, mobile screen
+    </div>
+  )
+}
+
 function App() {
-  return (<Style />);
+  return (
+    <>
+      <Info />
+      <Style />
+    </>);
   // return (<Dev />);
 }
 
