@@ -11,10 +11,10 @@
     "body-scroll-lock": "^3.0.2",
     "gh-pages": "^2.2.0",
     "lodash.clamp": "^4.0.3",
-    "node-sass": "^4.14.1",
+    "node-sass": "^9.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
+    "react-scripts": "5.0.1",
     "react-spring": "^9.0.0-rc.3",
     "react-use-gesture": "^7.0.15",
     "typescript": "^3.7.5"
